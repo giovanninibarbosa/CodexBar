@@ -68,17 +68,25 @@ public struct WidgetSnapshot: Codable, Sendable {
 
     public let entries: [ProviderEntry]
     public let enabledProviders: [UsageProvider]
+    public let overviewProviders: [UsageProvider]?
     public let generatedAt: Date
 
-    public init(entries: [ProviderEntry], enabledProviders: [UsageProvider]? = nil, generatedAt: Date) {
+    public init(
+        entries: [ProviderEntry],
+        enabledProviders: [UsageProvider]? = nil,
+        overviewProviders: [UsageProvider]? = nil,
+        generatedAt: Date)
+    {
         self.entries = entries
         self.enabledProviders = enabledProviders ?? entries.map(\.provider)
+        self.overviewProviders = overviewProviders
         self.generatedAt = generatedAt
     }
 
     private enum CodingKeys: String, CodingKey {
         case entries
         case enabledProviders
+        case overviewProviders
         case generatedAt
     }
 
@@ -88,12 +96,14 @@ public struct WidgetSnapshot: Codable, Sendable {
         self.generatedAt = try container.decode(Date.self, forKey: .generatedAt)
         self.enabledProviders = try container.decodeIfPresent([UsageProvider].self, forKey: .enabledProviders)
             ?? self.entries.map(\.provider)
+        self.overviewProviders = try container.decodeIfPresent([UsageProvider].self, forKey: .overviewProviders)
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.entries, forKey: .entries)
         try container.encode(self.enabledProviders, forKey: .enabledProviders)
+        try container.encodeIfPresent(self.overviewProviders, forKey: .overviewProviders)
         try container.encode(self.generatedAt, forKey: .generatedAt)
     }
 }

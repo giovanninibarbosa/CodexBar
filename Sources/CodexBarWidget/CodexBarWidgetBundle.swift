@@ -4,10 +4,27 @@ import WidgetKit
 @main
 struct CodexBarWidgetBundle: WidgetBundle {
     var body: some Widget {
+        CodexBarOverviewWidget()
         CodexBarSwitcherWidget()
         CodexBarUsageWidget()
         CodexBarHistoryWidget()
         CodexBarCompactWidget()
+    }
+}
+
+struct CodexBarOverviewWidget: Widget {
+    private let kind = "CodexBarOverviewWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(
+            kind: self.kind,
+            provider: CodexBarOverviewTimelineProvider())
+        { entry in
+            CodexBarOverviewWidgetView(entry: entry)
+        }
+        .configurationDisplayName("CodexBar Overview")
+        .description("Multiple providers in one widget.")
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
 
@@ -38,8 +55,8 @@ struct CodexBarUsageWidget: Widget {
         { entry in
             CodexBarUsageWidgetView(entry: entry)
         }
-        .configurationDisplayName("CodexBar Usage")
-        .description("Session and weekly usage with credits and costs.")
+        .configurationDisplayName("CodexBar Provider")
+        .description("Single-provider usage with credits and costs.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

@@ -10,7 +10,8 @@ read_when:
 
 ## Snapshot pipeline
 - `WidgetSnapshotStore` writes compact JSON snapshots to the app-group container.
-- Widgets read the snapshot and render usage/credits/history states.
+- Widgets read the snapshot and render provider detail, overview, credits, and history states.
+- The snapshot now carries the resolved Overview provider selection so widgets can mirror the app’s merged overview configuration.
 
 ## Extension
 - `Sources/CodexBarWidget` contains timeline + views.

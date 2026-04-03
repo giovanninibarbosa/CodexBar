@@ -2,12 +2,62 @@ import CodexBarCore
 import SwiftUI
 import WidgetKit
 
+struct CodexBarOverviewWidgetView: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: CodexBarOverviewEntry
+
+    var body: some View {
+        let limit = self.family == .systemLarge ? 3 : 2
+        let providers = WidgetProviderCatalog.overviewProviders(from: self.entry.snapshot, limit: limit)
+        let providerEntries = providers.compactMap { provider in
+            WidgetProviderCatalog.providerEntry(for: provider, in: self.entry.snapshot)
+        }
+
+        ZStack {
+            Color.black.opacity(0.02)
+            if providerEntries.isEmpty {
+                self.emptyState
+            } else {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Overview")
+                            .font(.body)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Text(WidgetFormat.relativeDate(self.entry.snapshot.generatedAt))
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    ForEach(providerEntries, id: \.provider) { providerEntry in
+                        OverviewRowView(entry: providerEntry)
+                    }
+                }
+                .padding(12)
+            }
+        }
+        .containerBackground(.fill.tertiary, for: .widget)
+    }
+
+    private var emptyState: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Open CodexBar")
+                .font(.body)
+                .fontWeight(.semibold)
+            Text("Enable Overview providers in Display settings to populate this widget.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
+        .padding(12)
+    }
+}
+
 struct CodexBarUsageWidgetView: View {
     @Environment(\.widgetFamily) private var family
     let entry: CodexBarWidgetEntry
 
     var body: some View {
-        let providerEntry = self.entry.snapshot.entries.first { $0.provider == self.entry.provider }
+        let providerEntry = WidgetProviderCatalog.providerEntry(for: self.entry.provider, in: self.entry.snapshot)
         ZStack {
             Color.black.opacity(0.02)
             if let providerEntry {
@@ -49,7 +99,7 @@ struct CodexBarHistoryWidgetView: View {
     let entry: CodexBarWidgetEntry
 
     var body: some View {
-        let providerEntry = self.entry.snapshot.entries.first { $0.provider == self.entry.provider }
+        let providerEntry = WidgetProviderCatalog.providerEntry(for: self.entry.provider, in: self.entry.snapshot)
         ZStack {
             Color.black.opacity(0.02)
             if let providerEntry {
@@ -78,7 +128,7 @@ struct CodexBarCompactWidgetView: View {
     let entry: CodexBarCompactEntry
 
     var body: some View {
-        let providerEntry = self.entry.snapshot.entries.first { $0.provider == self.entry.provider }
+        let providerEntry = WidgetProviderCatalog.providerEntry(for: self.entry.provider, in: self.entry.snapshot)
         ZStack {
             Color.black.opacity(0.02)
             if let providerEntry {
@@ -108,7 +158,7 @@ struct CodexBarSwitcherWidgetView: View {
     let entry: CodexBarSwitcherEntry
 
     var body: some View {
-        let providerEntry = self.entry.snapshot.entries.first { $0.provider == self.entry.provider }
+        let providerEntry = WidgetProviderCatalog.providerEntry(for: self.entry.provider, in: self.entry.snapshot)
         ZStack {
             Color.black.opacity(0.02)
             VStack(alignment: .leading, spacing: 10) {
@@ -231,17 +281,7 @@ private struct ProviderSwitchChip: View {
             ? WidgetColors.color(for: self.provider).opacity(0.2)
             : Color.primary.opacity(0.08)
 
-        if let choice = ProviderChoice(provider: self.provider) {
-            Button(intent: SwitchWidgetProviderIntent(provider: choice)) {
-                Text(label)
-                    .font(self.compact ? .caption2.weight(.semibold) : .caption.weight(.semibold))
-                    .foregroundStyle(self.selected ? Color.primary : Color.secondary)
-                    .padding(.horizontal, self.compact ? 6 : 8)
-                    .padding(.vertical, self.compact ? 3 : 4)
-                    .background(Capsule().fill(background))
-            }
-            .buttonStyle(.plain)
-        } else {
+        Button(intent: SwitchWidgetProviderIntent(provider: self.provider)) {
             Text(label)
                 .font(self.compact ? .caption2.weight(.semibold) : .caption.weight(.semibold))
                 .foregroundStyle(self.selected ? Color.primary : Color.secondary)
@@ -249,6 +289,7 @@ private struct ProviderSwitchChip: View {
                 .padding(.vertical, self.compact ? 3 : 4)
                 .background(Capsule().fill(background))
         }
+        .buttonStyle(.plain)
     }
 
     private var longLabel: String {
@@ -363,6 +404,47 @@ private struct SwitcherLargeUsageView: View {
             }
             UsageHistoryChart(points: self.entry.dailyUsage, color: WidgetColors.color(for: self.entry.provider))
                 .frame(height: 50)
+        }
+    }
+}
+
+private struct OverviewRowView: View {
+    let entry: WidgetSnapshot.ProviderEntry
+
+    var body: some View {
+        let primaryRow = WidgetUsageRow.rows(for: self.entry).first { $0.percentLeft != nil }
+        VStack(alignment: .leading, spacing: 6) {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text(ProviderDefaults.metadata[self.entry.provider]?.displayName ?? self.entry.provider.rawValue
+                    .capitalized)
+                    .font(.caption.weight(.semibold))
+                Spacer()
+                if let primaryRow {
+                    Text(primaryRow.title)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                    Text(WidgetFormat.percent(primaryRow.percentLeft))
+                        .font(.caption.weight(.medium))
+                } else {
+                    Text(WidgetFormat.relativeDate(self.entry.updatedAt))
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            if let primaryRow {
+                UsageBarRow(
+                    title: primaryRow.title,
+                    percentLeft: primaryRow.percentLeft,
+                    color: WidgetColors.color(for: self.entry.provider))
+            }
+
+            if let detail = WidgetOverviewDetail.detail(for: self.entry) {
+                Text(detail)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
         }
     }
 }
@@ -646,6 +728,25 @@ enum WidgetColors {
         case .perplexity:
             Color(red: 32 / 255, green: 178 / 255, blue: 170 / 255) // Perplexity teal
         }
+    }
+}
+
+enum WidgetOverviewDetail {
+    static func detail(for entry: WidgetSnapshot.ProviderEntry) -> String? {
+        let rows = WidgetUsageRow.rows(for: entry)
+        if let secondaryRow = rows.dropFirst().first(where: { $0.percentLeft != nil }) {
+            return "\(secondaryRow.title) \(WidgetFormat.percent(secondaryRow.percentLeft))"
+        }
+        if let codeReview = entry.codeReviewRemainingPercent {
+            return "Code review \(WidgetFormat.percent(codeReview))"
+        }
+        if let credits = entry.creditsRemaining {
+            return "Credits \(WidgetFormat.credits(credits))"
+        }
+        if let tokenUsage = entry.tokenUsage {
+            return WidgetFormat.costAndTokens(cost: tokenUsage.sessionCostUSD, tokens: tokenUsage.sessionTokens)
+        }
+        return nil
     }
 }
 

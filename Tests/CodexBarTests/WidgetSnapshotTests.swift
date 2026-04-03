@@ -25,6 +25,7 @@ struct WidgetSnapshotTests {
         let snapshot = WidgetSnapshot(
             entries: [entry],
             enabledProviders: [.codex, .claude],
+            overviewProviders: [.codex],
             generatedAt: Date())
 
         let encoder = JSONEncoder()
@@ -39,6 +40,7 @@ struct WidgetSnapshotTests {
         #expect(decoded.entries.first?.provider == .codex)
         #expect(decoded.entries.first?.tokenUsage?.sessionTokens == 1200)
         #expect(decoded.enabledProviders == [.codex, .claude])
+        #expect(decoded.overviewProviders == [.codex])
     }
 
     @Test
@@ -63,6 +65,7 @@ struct WidgetSnapshotTests {
         let snapshot = WidgetSnapshot(
             entries: [entry],
             enabledProviders: [.kilo, .codex],
+            overviewProviders: [.kilo],
             generatedAt: Date())
 
         let encoder = JSONEncoder()
@@ -76,6 +79,7 @@ struct WidgetSnapshotTests {
         #expect(decoded.entries.first?.provider == .kilo)
         #expect(decoded.entries.first?.primary?.resetDescription == "40/100 credits")
         #expect(decoded.enabledProviders == [.kilo, .codex])
+        #expect(decoded.overviewProviders == [.kilo])
     }
 
     @Test
@@ -104,6 +108,7 @@ struct WidgetSnapshotTests {
         let snapshot = WidgetSnapshot(
             entries: [entry],
             enabledProviders: [.kilo],
+            overviewProviders: [],
             generatedAt: now)
 
         let encoder = JSONEncoder()
@@ -119,5 +124,24 @@ struct WidgetSnapshotTests {
         #expect(decoded.entries.first?.primary?.remainingPercent == 0)
         #expect(decoded.entries.first?.primary?.resetDescription == "0/0 credits")
         #expect(decoded.enabledProviders == [.kilo])
+        #expect(decoded.overviewProviders == [])
+    }
+
+    @Test
+    func `widget snapshot decode defaults overview providers when field is absent`() throws {
+        let json = Data("""
+        {
+          "entries": [],
+          "enabledProviders": ["codex", "claude"],
+          "generatedAt": "2026-04-03T12:00:00Z"
+        }
+        """.utf8)
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let decoded = try decoder.decode(WidgetSnapshot.self, from: json)
+
+        #expect(decoded.enabledProviders == [.codex, .claude])
+        #expect(decoded.overviewProviders == nil)
     }
 }

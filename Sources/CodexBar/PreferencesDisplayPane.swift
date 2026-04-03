@@ -110,7 +110,7 @@ struct DisplayPane: View {
     private var overviewProviderSelector: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .center, spacing: 12) {
-                Text("Overview tab providers")
+                Text("Overview providers")
                     .font(.body)
                 Spacer(minLength: 0)
                 if self.showsOverviewConfigureButton {
@@ -125,7 +125,7 @@ struct DisplayPane: View {
             }
 
             if !self.settings.mergeIcons {
-                Text("Enable Merge Icons to configure Overview tab providers.")
+                Text("Enable Merge Icons to configure Overview providers for the menu and widget.")
                     .font(.footnote)
                     .foregroundStyle(.tertiary)
             } else if self.activeProvidersInOrder.isEmpty {
@@ -146,7 +146,7 @@ struct DisplayPane: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Choose up to \(Self.maxOverviewProviders) providers")
                 .font(.headline)
-            Text("Overview rows always follow provider order.")
+            Text("Used by the merged menu overview and the Overview widget. Rows always follow provider order.")
                 .font(.footnote)
                 .foregroundStyle(.tertiary)
 
