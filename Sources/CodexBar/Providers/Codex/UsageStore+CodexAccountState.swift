@@ -34,7 +34,7 @@ extension UsageStore {
         phaseDidChange?(.credits)
 
         if self.settings.codexCookieSource.isEnabled {
-        let expectedGuard = self.currentCodexOpenAIWebRefreshGuard()
+            let expectedGuard = self.currentCodexOpenAIWebRefreshGuard()
             await self.refreshOpenAIDashboardIfNeeded(
                 force: true,
                 expectedGuard: expectedGuard,
