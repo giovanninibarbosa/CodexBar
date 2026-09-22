@@ -76,7 +76,7 @@ browser cookies again. Signing in to ollama.com does not change this state.
 
 ### “The pasted Ollama cookie header has no session cookie (wos-session)”
 
-The pasted text was recognized but contains no `wos-session` (or legacy session) cookie. Copy the full `Cookie:`
+The pasted text was read as a cookie header but contains no `wos-session` (or legacy session) cookie. Copy the full `Cookie:`
 header from a request to `https://ollama.com/settings` while signed in; a single analytics or theme cookie is not
 enough.
 
