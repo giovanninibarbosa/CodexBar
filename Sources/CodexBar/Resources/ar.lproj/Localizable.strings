@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "تحتاج ملفات تعريف ارتباط Safari إلى وصول كامل إلى القرص لتطبيق CodexBar (إعدادات النظام > الخصوصية والأمان).";
 "ollama_browser_cookie_decryption_denied" = "تم رفض فك تشفير ملفات تعريف ارتباط %@ في سلسلة المفاتيح. افتح بطاقة موفر الخدمة وانقر على تحديث (⌘R) لطلب الوصول إلى سلسلة المفاتيح مرة أخرى.";
 "ollama_browser_cookie_decryption_disabled" = "فك تشفير ملفات تعريف ارتباط %@ معطل في CodexBar؛ فعّل الوصول إلى سلسلة المفاتيح ثم حدّث.";
+"ollama_manual_cookie_empty" = "مصدر ملفات تعريف الارتباط مضبوط على «يدوي»، لكن لم يتم لصق أي ترويسة Cookie. الصق ترويسة Cookie من https://ollama.com/settings، أو بدّل مصدر ملفات تعريف الارتباط إلى «تلقائي» لاستيرادها من المتصفح.";
+"ollama_manual_cookie_unrecognized" = "ترويسة Cookie الملصقة لـ Ollama لا تحتوي على ملف تعريف ارتباط الجلسة (wos-session). انسخ ترويسة Cookie الكاملة من https://ollama.com/settings أثناء تسجيل الدخول، ثم الصقها مجددًا.";
+"ollama_no_browser_session" = "لم يتم العثور على ملف تعريف ارتباط جلسة Ollama في متصفحاتك. سجّل الدخول عبر https://ollama.com/signin في Chrome ثم انقر «تحديث» (⌘R). إذا كانت جلستك في Safari أو متصفح آخر فقط، فاضبط مصدر ملفات تعريف الارتباط على «يدوي» والصق ترويسة Cookie.";
+"ollama_cookie_source_auto_subtitle" = "يستورد جلسة ollama.com من Chrome ثم من المتصفحات الأخرى. قد يُظهر الاستيراد الأول مطالبة من سلسلة مفاتيح macOS بخصوص “Chrome Safe Storage”؛ انقر «السماح دائمًا».";
+"ollama_manual_cookie_missing_status" = "لم يتم لصق أي ملف تعريف ارتباط";
+"Use Auto" = "استخدام التلقائي";
+"Sign in to Ollama…" = "تسجيل الدخول إلى Ollama…";
 
 " providers" = " providers";
 "(System)" = "(النظام)";

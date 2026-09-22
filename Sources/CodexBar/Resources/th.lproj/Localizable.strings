@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "คุกกี้ Safari ต้องใช้สิทธิ์เข้าถึงดิสก์แบบเต็มสำหรับ CodexBar (การตั้งค่าระบบ > ความเป็นส่วนตัวและความปลอดภัย)";
 "ollama_browser_cookie_decryption_denied" = "การถอดรหัสคุกกี้ %@ ถูกปฏิเสธในพวงกุญแจ เปิดการ์ดผู้ให้บริการแล้วคลิก รีเฟรช (⌘R) เพื่อขอสิทธิ์เข้าถึงพวงกุญแจอีกครั้ง";
 "ollama_browser_cookie_decryption_disabled" = "การถอดรหัสคุกกี้ %@ ถูกปิดใช้งานใน CodexBar ให้เปิดการเข้าถึงพวงกุญแจแล้วรีเฟรช";
+"ollama_manual_cookie_empty" = "แหล่งคุกกี้ถูกตั้งเป็น ‘ด้วยตนเอง’ แต่ยังไม่ได้วางส่วนหัว Cookie ให้วางส่วนหัว Cookie จาก https://ollama.com/settings หรือเปลี่ยนแหล่งคุกกี้เป็น ‘อัตโนมัติ’ เพื่อนำเข้าคุกกี้จากเบราว์เซอร์";
+"ollama_manual_cookie_unrecognized" = "ส่วนหัว Cookie ของ Ollama ที่วางไว้ไม่มีคุกกี้เซสชัน (wos-session) ให้คัดลอกส่วนหัว Cookie ฉบับเต็มจาก https://ollama.com/settings ขณะลงชื่อเข้าใช้อยู่ แล้ววางอีกครั้ง";
+"ollama_no_browser_session" = "ไม่พบคุกกี้เซสชันของ Ollama ในเบราว์เซอร์ของคุณ ให้ลงชื่อเข้าใช้ที่ https://ollama.com/signin ใน Chrome แล้วคลิก รีเฟรช (⌘R) หากเซสชันของคุณอยู่ใน Safari หรือเบราว์เซอร์อื่นเท่านั้น ให้ตั้งแหล่งคุกกี้เป็น ‘ด้วยตนเอง’ แล้ววางส่วนหัว Cookie";
+"ollama_cookie_source_auto_subtitle" = "นำเข้าเซสชัน ollama.com ของคุณจาก Chrome แล้วจึงจากเบราว์เซอร์อื่น การนำเข้าครั้งแรกอาจแสดงข้อความขอสิทธิ์พวงกุญแจของ macOS สำหรับ “Chrome Safe Storage” ให้คลิก อนุญาตเสมอ";
+"ollama_manual_cookie_missing_status" = "ยังไม่ได้วางคุกกี้";
+"Use Auto" = "ใช้อัตโนมัติ";
+"Sign in to Ollama…" = "ลงชื่อเข้าใช้ Ollama…";
 
 " providers" = "ผู้ให้บริการ  ";
 "(System)" = "(ระบบ)";

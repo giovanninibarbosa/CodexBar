@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "Les galetes de Safari necessiten accés complet al disc per a CodexBar (Configuració del Sistema > Privadesa i seguretat).";
 "ollama_browser_cookie_decryption_denied" = "S'ha denegat el desxifratge de les galetes de %@ al Clauer. Obriu la targeta del proveïdor i feu clic a Actualitza (⌘R) per tornar a sol·licitar accés al Clauer.";
 "ollama_browser_cookie_decryption_disabled" = "El desxifratge de les galetes de %@ està desactivat a CodexBar; activeu l'accés al Clauer i actualitzeu.";
+"ollama_manual_cookie_empty" = "La font de galetes està definida com a Manual, però no s’ha enganxat cap capçalera Cookie. Enganxa una capçalera Cookie des de https://ollama.com/settings o canvia la font de galetes a Automàtic per importar les galetes del navegador.";
+"ollama_manual_cookie_unrecognized" = "La capçalera Cookie d’Ollama enganxada no conté cap galeta de sessió (wos-session). Copia la capçalera Cookie completa des de https://ollama.com/settings amb la sessió iniciada i torna-la a enganxar.";
+"ollama_no_browser_session" = "No s’ha trobat cap galeta de sessió d’Ollama als teus navegadors. Inicia la sessió a https://ollama.com/signin amb Chrome i fes clic a Actualitza (⌘R). Si la sessió només és a Safari o a un altre navegador, defineix la font de galetes com a Manual i enganxa una capçalera Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Importa la sessió d’ollama.com des de Chrome i després d’altres navegadors. La primera importació pot mostrar un avís del Clauer de macOS per a “Chrome Safe Storage”; fes clic a Permet sempre.";
+"ollama_manual_cookie_missing_status" = "Cap galeta enganxada";
+"Use Auto" = "Usa Automàtic";
+"Sign in to Ollama…" = "Inicia la sessió a Ollama…";
 
 " providers" = " proveïdors";
 "(System)" = "(Sistema)";

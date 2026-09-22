@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Les cookies Safari nécessitent l’accès complet au disque pour CodexBar (Réglages Système > Confidentialité et sécurité).";
 "ollama_browser_cookie_decryption_denied" = "Le déchiffrement des cookies %@ a été refusé dans le Trousseau. Ouvrez la fiche du fournisseur et cliquez sur Actualiser (⌘R) pour redemander l’accès au Trousseau.";
 "ollama_browser_cookie_decryption_disabled" = "Le déchiffrement des cookies %@ est désactivé dans CodexBar ; activez l’accès au Trousseau et actualisez.";
+"ollama_manual_cookie_empty" = "La source des cookies est réglée sur Manuel, mais aucun en-tête Cookie n’est collé. Collez un en-tête Cookie depuis https://ollama.com/settings, ou passez la source des cookies sur Automatique pour importer les cookies du navigateur.";
+"ollama_manual_cookie_unrecognized" = "L’en-tête Cookie Ollama collé ne contient aucun cookie de session (wos-session). Copiez l’en-tête Cookie complet depuis https://ollama.com/settings en étant connecté, puis collez-le à nouveau.";
+"ollama_no_browser_session" = "Aucun cookie de session Ollama trouvé dans vos navigateurs. Connectez-vous sur https://ollama.com/signin dans Chrome, puis cliquez sur Actualiser (⌘R). Si votre session n’existe que dans Safari ou un autre navigateur, réglez la source des cookies sur Manuel et collez un en-tête Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Importe votre session ollama.com depuis Chrome, puis depuis les autres navigateurs. La première importation peut afficher une demande du trousseau macOS pour “Chrome Safe Storage” ; cliquez sur Toujours autoriser.";
+"ollama_manual_cookie_missing_status" = "Aucun cookie collé";
+"Use Auto" = "Utiliser Automatique";
+"Sign in to Ollama…" = "Se connecter à Ollama…";
 
 " providers" = " fournisseurs";
 "(System)" = "(System)";

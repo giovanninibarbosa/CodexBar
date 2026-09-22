@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Для файлів cookie Safari програмі CodexBar потрібен повний доступ до диска (Системні параметри > Конфіденційність і безпека).";
 "ollama_browser_cookie_decryption_denied" = "Розшифрування файлів cookie %@ було відхилено у В’язці ключів. Відкрийте картку провайдера й натисніть «Оновити» (⌘R), щоб знову запитати доступ до В’язки ключів.";
 "ollama_browser_cookie_decryption_disabled" = "Розшифрування файлів cookie %@ вимкнено в CodexBar; увімкніть доступ до В’язки ключів і оновіть.";
+"ollama_manual_cookie_empty" = "Джерело cookie встановлено на «Вручну», але заголовок Cookie не вставлено. Вставте заголовок Cookie з https://ollama.com/settings або перемкніть джерело cookie на «Авто», щоб імпортувати cookie з браузера.";
+"ollama_manual_cookie_unrecognized" = "У вставленому заголовку Cookie для Ollama немає cookie сеансу (wos-session). Скопіюйте повний заголовок Cookie з https://ollama.com/settings, увійшовши в обліковий запис, і вставте його знову.";
+"ollama_no_browser_session" = "Cookie сеансу Ollama не знайдено у ваших браузерах. Увійдіть на https://ollama.com/signin у Chrome, а потім натисніть «Оновити» (⌘R). Якщо сеанс є лише в Safari чи іншому браузері, установіть джерело cookie на «Вручну» та вставте заголовок Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Імпортує ваш сеанс ollama.com із Chrome, а потім з інших браузерів. Під час першого імпорту macOS може запитати доступ до в’язки ключів для “Chrome Safe Storage”; натисніть «Завжди дозволяти».";
+"ollama_manual_cookie_missing_status" = "Cookie не вставлено";
+"Use Auto" = "Використовувати Авто";
+"Sign in to Ollama…" = "Увійти в Ollama…";
 
 " providers" = "провайдерів";
 "(System)" = "(Система)";

@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "CodexBar 需要“完全磁盘访问权限”才能读取 Safari Cookie（系统设置 > 隐私与安全性）。";
 "ollama_browser_cookie_decryption_denied" = "钥匙串拒绝解密 %@ Cookie。打开提供商卡片并点按“刷新”(⌘R)，再次请求钥匙串访问权限。";
 "ollama_browser_cookie_decryption_disabled" = "CodexBar 中已停用 %@ Cookie 解密；请启用钥匙串访问权限并刷新。";
+"ollama_manual_cookie_empty" = "Cookie 来源已设为“手动”，但尚未粘贴 Cookie 标头。请从 https://ollama.com/settings 粘贴 Cookie 标头，或将 Cookie 来源切换为“自动”以导入浏览器 Cookie。";
+"ollama_manual_cookie_unrecognized" = "粘贴的 Ollama Cookie 标头不包含会话 Cookie（wos-session）。请在已登录状态下从 https://ollama.com/settings 复制完整的 Cookie 标头，然后重新粘贴。";
+"ollama_no_browser_session" = "在你的浏览器中未找到 Ollama 会话 Cookie。请在 Chrome 中登录 https://ollama.com/signin，然后点击“刷新”（⌘R）。如果你的会话只存在于 Safari 或其他浏览器，请将 Cookie 来源设为“手动”并粘贴 Cookie 标头。";
+"ollama_cookie_source_auto_subtitle" = "从 Chrome 导入你的 ollama.com 会话，其次是其他浏览器。首次导入可能会弹出 macOS 钥匙串对 “Chrome Safe Storage” 的访问请求，请点击“始终允许”。";
+"ollama_manual_cookie_missing_status" = "尚未粘贴 Cookie";
+"Use Auto" = "使用自动";
+"Sign in to Ollama…" = "登录 Ollama…";
 
 " providers" = " 提供商";
 "(System)" = "（System）";

@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Safari Cookie を読み込むには、CodexBar にフルディスクアクセスが必要です（システム設定 > プライバシーとセキュリティ）。";
 "ollama_browser_cookie_decryption_denied" = "%@ Cookie の復号がキーチェーンで拒否されました。プロバイダーカードを開き、更新（⌘R）をクリックしてキーチェーンへのアクセスを再度要求してください。";
 "ollama_browser_cookie_decryption_disabled" = "%@ Cookie の復号が CodexBar で無効です。キーチェーンへのアクセスを有効にして更新してください。";
+"ollama_manual_cookie_empty" = "Cookie ソースが「手動」に設定されていますが、Cookie ヘッダーが貼り付けられていません。https://ollama.com/settings から Cookie ヘッダーを貼り付けるか、Cookie ソースを「自動」に切り替えてブラウザの Cookie を読み込んでください。";
+"ollama_manual_cookie_unrecognized" = "貼り付けられた Ollama の Cookie ヘッダーにセッション Cookie（wos-session）が含まれていません。サインインした状態で https://ollama.com/settings から完全な Cookie ヘッダーをコピーし、もう一度貼り付けてください。";
+"ollama_no_browser_session" = "ブラウザに Ollama のセッション Cookie が見つかりません。Chrome で https://ollama.com/signin にサインインしてから「更新」（⌘R）をクリックしてください。セッションが Safari や他のブラウザにしかない場合は、Cookie ソースを「手動」にして Cookie ヘッダーを貼り付けてください。";
+"ollama_cookie_source_auto_subtitle" = "ollama.com のセッションを Chrome、次に他のブラウザから読み込みます。初回の読み込み時に macOS のキーチェーンが “Chrome Safe Storage” へのアクセスを求めることがあります。「常に許可」をクリックしてください。";
+"ollama_manual_cookie_missing_status" = "Cookie が貼り付けられていません";
+"Use Auto" = "自動を使用";
+"Sign in to Ollama…" = "Ollama にサインイン…";
 
 " providers" = " 件のプロバイダ";
 "(System)" = "（システム）";

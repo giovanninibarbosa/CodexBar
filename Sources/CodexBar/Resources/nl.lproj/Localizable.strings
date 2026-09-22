@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Safari-cookies vereisen volledige schijftoegang voor CodexBar (Systeeminstellingen > Privacy en beveiliging).";
 "ollama_browser_cookie_decryption_denied" = "Het ontsleutelen van %@-cookies is geweigerd in Sleutelhanger. Open de providerkaart en klik op Vernieuw (⌘R) om opnieuw toegang tot Sleutelhanger te vragen.";
 "ollama_browser_cookie_decryption_disabled" = "Het ontsleutelen van %@-cookies is uitgeschakeld in CodexBar; schakel Sleutelhangertoegang in en vernieuw.";
+"ollama_manual_cookie_empty" = "De cookiebron staat op Handmatig, maar er is geen Cookie-header geplakt. Plak een Cookie-header van https://ollama.com/settings of zet de cookiebron op Automatisch om browsercookies te importeren.";
+"ollama_manual_cookie_unrecognized" = "De geplakte Ollama-Cookie-header bevat geen sessiecookie (wos-session). Kopieer de volledige Cookie-header van https://ollama.com/settings terwijl je bent ingelogd en plak hem opnieuw.";
+"ollama_no_browser_session" = "Geen Ollama-sessiecookie gevonden in je browsers. Log in op https://ollama.com/signin in Chrome en klik daarna op Vernieuwen (⌘R). Staat je sessie alleen in Safari of een andere browser, zet de cookiebron dan op Handmatig en plak een Cookie-header.";
+"ollama_cookie_source_auto_subtitle" = "Importeert je ollama.com-sessie uit Chrome en daarna uit andere browsers. Bij de eerste import kan macOS een sleutelhangerprompt voor “Chrome Safe Storage” tonen; klik op Altijd toestaan.";
+"ollama_manual_cookie_missing_status" = "Geen cookie geplakt";
+"Use Auto" = "Automatisch gebruiken";
+"Sign in to Ollama…" = "Inloggen bij Ollama…";
 
 " providers" = " providers";
 "(System)" = "(Systeem)";

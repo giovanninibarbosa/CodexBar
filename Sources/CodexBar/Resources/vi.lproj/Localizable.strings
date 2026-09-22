@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Cookie Safari cần Quyền truy cập toàn bộ ổ đĩa cho CodexBar (Cài đặt hệ thống > Quyền riêng tư & Bảo mật).";
 "ollama_browser_cookie_decryption_denied" = "Việc giải mã cookie %@ đã bị từ chối trong Chuỗi khóa. Mở thẻ nhà cung cấp và bấm Làm mới (⌘R) để yêu cầu lại quyền truy cập Chuỗi khóa.";
 "ollama_browser_cookie_decryption_disabled" = "Việc giải mã cookie %@ bị tắt trong CodexBar; hãy bật quyền truy cập Chuỗi khóa rồi làm mới.";
+"ollama_manual_cookie_empty" = "Nguồn cookie đang đặt là Thủ công nhưng chưa dán tiêu đề Cookie nào. Hãy dán tiêu đề Cookie từ https://ollama.com/settings hoặc chuyển nguồn cookie sang Tự động để nhập cookie từ trình duyệt.";
+"ollama_manual_cookie_unrecognized" = "Tiêu đề Cookie Ollama đã dán không có cookie phiên (wos-session). Hãy sao chép toàn bộ tiêu đề Cookie từ https://ollama.com/settings khi đã đăng nhập rồi dán lại.";
+"ollama_no_browser_session" = "Không tìm thấy cookie phiên Ollama trong các trình duyệt của bạn. Hãy đăng nhập tại https://ollama.com/signin bằng Chrome rồi bấm Làm mới (⌘R). Nếu phiên của bạn chỉ có trong Safari hoặc trình duyệt khác, hãy đặt nguồn cookie là Thủ công và dán tiêu đề Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Nhập phiên ollama.com của bạn từ Chrome, sau đó từ các trình duyệt khác. Lần nhập đầu tiên có thể hiện hộp thoại Keychain của macOS cho “Chrome Safe Storage”; hãy bấm Luôn cho phép.";
+"ollama_manual_cookie_missing_status" = "Chưa dán cookie";
+"Use Auto" = "Dùng Tự động";
+"Sign in to Ollama…" = "Đăng nhập Ollama…";
 
 " providers" = "nhà cung cấp";
 "(System)" = "(Hệ thống)";

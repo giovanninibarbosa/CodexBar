@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "Cookie Safari memerlukan Akses Disk Penuh untuk CodexBar (Pengaturan Sistem > Privasi & Keamanan).";
 "ollama_browser_cookie_decryption_denied" = "Dekripsi cookie %@ ditolak di Rantai Kunci. Buka kartu penyedia dan klik Segarkan (⌘R) untuk meminta akses Rantai Kunci lagi.";
 "ollama_browser_cookie_decryption_disabled" = "Dekripsi cookie %@ dinonaktifkan di CodexBar; aktifkan akses Rantai Kunci lalu segarkan.";
+"ollama_manual_cookie_empty" = "Sumber cookie disetel ke Manual, tetapi belum ada header Cookie yang ditempel. Tempel header Cookie dari https://ollama.com/settings, atau ubah sumber cookie ke Otomatis untuk mengimpor cookie browser.";
+"ollama_manual_cookie_unrecognized" = "Header Cookie Ollama yang ditempel tidak memiliki cookie sesi (wos-session). Salin header Cookie lengkap dari https://ollama.com/settings saat sudah masuk, lalu tempel lagi.";
+"ollama_no_browser_session" = "Cookie sesi Ollama tidak ditemukan di browser Anda. Masuk di https://ollama.com/signin melalui Chrome, lalu klik Segarkan (⌘R). Jika sesi Anda hanya ada di Safari atau browser lain, setel sumber cookie ke Manual dan tempel header Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Mengimpor sesi ollama.com Anda dari Chrome, lalu dari browser lain. Impor pertama mungkin menampilkan permintaan Keychain macOS untuk “Chrome Safe Storage”; klik Selalu Izinkan.";
+"ollama_manual_cookie_missing_status" = "Belum ada cookie yang ditempel";
+"Use Auto" = "Gunakan Otomatis";
+"Sign in to Ollama…" = "Masuk ke Ollama…";
 
 " providers" = " penyedia";
 "(System)" = "(Sistem)";

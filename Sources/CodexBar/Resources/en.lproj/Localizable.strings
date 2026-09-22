@@ -6,6 +6,13 @@
 "ollama_safari_cookie_access_hint" = "Safari cookies need Full Disk Access for CodexBar (System Settings > Privacy & Security).";
 "ollama_browser_cookie_decryption_denied" = "%@ cookie decryption was declined in Keychain. Open the provider card and click Refresh (⌘R) to request Keychain access again.";
 "ollama_browser_cookie_decryption_disabled" = "%@ cookie decryption is disabled in CodexBar; enable Keychain access and refresh.";
+"ollama_manual_cookie_empty" = "Cookie source is set to Manual, but no cookie header is pasted. Paste a Cookie header from https://ollama.com/settings, or switch Cookie source to Auto to import browser cookies.";
+"ollama_manual_cookie_unrecognized" = "The pasted Ollama cookie header has no session cookie (wos-session). Copy the full Cookie header from https://ollama.com/settings while signed in, then paste it again.";
+"ollama_no_browser_session" = "No Ollama session cookie found in your browsers. Sign in at https://ollama.com/signin in Chrome, then click Refresh (⌘R). If your session is only in Safari or another browser, set Cookie source to Manual and paste a cookie header.";
+"ollama_cookie_source_auto_subtitle" = "Imports your ollama.com session from Chrome, then other browsers. The first import may show a macOS Keychain prompt for “Chrome Safe Storage”; click Always Allow.";
+"ollama_manual_cookie_missing_status" = "No cookie pasted";
+"Use Auto" = "Use Auto";
+"Sign in to Ollama…" = "Sign in to Ollama…";
 "claude_oauth_keychain_access_revoked" = "Claude Keychain access was revoked by Claude Code's token rotation. Click Refresh to re-grant access, or switch Claude Usage source to CLI/Web.";
 "claude_showing_last_known_usage" = "Showing last-known usage captured %@.";
 "claude_limited_usage_detail" = "Limited usage detail";

@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "Pliki cookie Safari wymagają pełnego dostępu do dysku dla CodexBar (Ustawienia systemowe > Prywatność i ochrona).";
 "ollama_browser_cookie_decryption_denied" = "Odszyfrowanie plików cookie %@ zostało odrzucone w Pęku kluczy. Otwórz kartę dostawcy i kliknij Odśwież (⌘R), aby ponownie poprosić o dostęp do Pęku kluczy.";
 "ollama_browser_cookie_decryption_disabled" = "Odszyfrowanie plików cookie %@ jest wyłączone w CodexBar; włącz dostęp do Pęku kluczy i odśwież.";
+"ollama_manual_cookie_empty" = "Źródło plików cookie jest ustawione na Ręcznie, ale nie wklejono nagłówka Cookie. Wklej nagłówek Cookie z https://ollama.com/settings lub przełącz źródło plików cookie na Automatycznie, aby zaimportować pliki cookie z przeglądarki.";
+"ollama_manual_cookie_unrecognized" = "Wklejony nagłówek Cookie Ollama nie zawiera pliku cookie sesji (wos-session). Skopiuj pełny nagłówek Cookie z https://ollama.com/settings po zalogowaniu i wklej go ponownie.";
+"ollama_no_browser_session" = "Nie znaleziono pliku cookie sesji Ollama w Twoich przeglądarkach. Zaloguj się na https://ollama.com/signin w Chrome, a następnie kliknij Odśwież (⌘R). Jeśli Twoja sesja jest tylko w Safari lub innej przeglądarce, ustaw źródło plików cookie na Ręcznie i wklej nagłówek Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Importuje sesję ollama.com z Chrome, a potem z innych przeglądarek. Pierwszy import może wyświetlić monit pęku kluczy macOS dla “Chrome Safe Storage”; kliknij Zawsze zezwalaj.";
+"ollama_manual_cookie_missing_status" = "Nie wklejono pliku cookie";
+"Use Auto" = "Użyj Automatycznie";
+"Sign in to Ollama…" = "Zaloguj się do Ollama…";
 
 " providers" = " providers";
 "(System)" = "(System)";

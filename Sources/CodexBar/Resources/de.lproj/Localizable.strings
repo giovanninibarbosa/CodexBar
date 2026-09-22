@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Safari-Cookies benötigen vollen Festplattenzugriff für CodexBar (Systemeinstellungen > Datenschutz & Sicherheit).";
 "ollama_browser_cookie_decryption_denied" = "Die Entschlüsselung der %@-Cookies wurde im Schlüsselbund abgelehnt. Öffne die Anbieterkarte und klicke auf „Aktualisieren“ (⌘R), um erneut Schlüsselbundzugriff anzufordern.";
 "ollama_browser_cookie_decryption_disabled" = "Die Entschlüsselung der %@-Cookies ist in CodexBar deaktiviert; aktivieren Sie den Schlüsselbundzugriff und aktualisieren Sie.";
+"ollama_manual_cookie_empty" = "Die Cookie-Quelle steht auf Manuell, aber es ist kein Cookie-Header eingefügt. Füge einen Cookie-Header von https://ollama.com/settings ein oder stelle die Cookie-Quelle auf Automatisch, um Browser-Cookies zu importieren.";
+"ollama_manual_cookie_unrecognized" = "Der eingefügte Ollama-Cookie-Header enthält kein Sitzungs-Cookie (wos-session). Kopiere den vollständigen Cookie-Header von https://ollama.com/settings, während du angemeldet bist, und füge ihn erneut ein.";
+"ollama_no_browser_session" = "In deinen Browsern wurde kein Ollama-Sitzungs-Cookie gefunden. Melde dich in Chrome unter https://ollama.com/signin an und klicke dann auf Aktualisieren (⌘R). Wenn deine Sitzung nur in Safari oder einem anderen Browser besteht, stelle die Cookie-Quelle auf Manuell und füge einen Cookie-Header ein.";
+"ollama_cookie_source_auto_subtitle" = "Importiert deine ollama.com-Sitzung aus Chrome, danach aus anderen Browsern. Beim ersten Import kann macOS eine Schlüsselbund-Abfrage für “Chrome Safe Storage” anzeigen; klicke auf Immer erlauben.";
+"ollama_manual_cookie_missing_status" = "Kein Cookie eingefügt";
+"Use Auto" = "Automatisch verwenden";
+"Sign in to Ollama…" = "Bei Ollama anmelden…";
 
 " providers" = "Anbieter";
 "(System)" = "(System)";

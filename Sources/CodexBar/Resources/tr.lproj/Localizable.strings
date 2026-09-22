@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "Safari çerezleri için CodexBar'a Tam Disk Erişimi gerekir (Sistem Ayarları > Gizlilik ve Güvenlik).";
 "ollama_browser_cookie_decryption_denied" = "%@ çerezlerinin şifresini çözme işlemi Anahtar Zinciri'nde reddedildi. Sağlayıcı kartını açın ve Anahtar Zinciri erişimini yeniden istemek için Yenile'ye (⌘R) tıklayın.";
 "ollama_browser_cookie_decryption_disabled" = "%@ çerezlerinin şifresi CodexBar'da çözülemiyor; Anahtar Zinciri erişimini etkinleştirip yenileyin.";
+"ollama_manual_cookie_empty" = "Çerez kaynağı Manuel olarak ayarlı, ancak hiçbir Cookie başlığı yapıştırılmamış. https://ollama.com/settings adresinden bir Cookie başlığı yapıştırın veya tarayıcı çerezlerini içe aktarmak için çerez kaynağını Otomatik olarak değiştirin.";
+"ollama_manual_cookie_unrecognized" = "Yapıştırılan Ollama Cookie başlığında oturum çerezi (wos-session) yok. Oturum açıkken https://ollama.com/settings adresinden tam Cookie başlığını kopyalayıp yeniden yapıştırın.";
+"ollama_no_browser_session" = "Tarayıcılarınızda Ollama oturum çerezi bulunamadı. Chrome’da https://ollama.com/signin adresinden oturum açın, ardından Yenile (⌘R) düğmesine tıklayın. Oturumunuz yalnızca Safari’de veya başka bir tarayıcıdaysa çerez kaynağını Manuel olarak ayarlayın ve bir Cookie başlığı yapıştırın.";
+"ollama_cookie_source_auto_subtitle" = "ollama.com oturumunuzu önce Chrome’dan, sonra diğer tarayıcılardan içe aktarır. İlk içe aktarma, “Chrome Safe Storage” için bir macOS Anahtar Zinciri istemi gösterebilir; Her Zaman İzin Ver’e tıklayın.";
+"ollama_manual_cookie_missing_status" = "Çerez yapıştırılmadı";
+"Use Auto" = "Otomatik Kullan";
+"Sign in to Ollama…" = "Ollama’da oturum aç…";
 
 " providers" = " sağlayıcı";
 "(System)" = "(Sistem)";

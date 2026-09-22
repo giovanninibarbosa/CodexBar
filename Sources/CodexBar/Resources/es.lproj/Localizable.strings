@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Las cookies de Safari necesitan acceso total al disco para CodexBar (Ajustes del Sistema > Privacidad y seguridad).";
 "ollama_browser_cookie_decryption_denied" = "Se rechazó en el Llavero el descifrado de las cookies de %@. Abre la tarjeta del proveedor y haz clic en Actualizar (⌘R) para volver a solicitar acceso al Llavero.";
 "ollama_browser_cookie_decryption_disabled" = "El descifrado de las cookies de %@ está desactivado en CodexBar; activa el acceso al Llavero y actualiza.";
+"ollama_manual_cookie_empty" = "La fuente de cookies está en Manual, pero no se ha pegado ningún encabezado Cookie. Pega un encabezado Cookie desde https://ollama.com/settings o cambia la fuente de cookies a Automático para importar las cookies del navegador.";
+"ollama_manual_cookie_unrecognized" = "El encabezado Cookie de Ollama pegado no contiene ninguna cookie de sesión (wos-session). Copia el encabezado Cookie completo desde https://ollama.com/settings con la sesión iniciada y vuelve a pegarlo.";
+"ollama_no_browser_session" = "No se encontró ninguna cookie de sesión de Ollama en tus navegadores. Inicia sesión en https://ollama.com/signin con Chrome y haz clic en Actualizar (⌘R). Si tu sesión solo está en Safari u otro navegador, cambia la fuente de cookies a Manual y pega un encabezado Cookie.";
+"ollama_cookie_source_auto_subtitle" = "Importa tu sesión de ollama.com desde Chrome y luego desde otros navegadores. La primera importación puede mostrar un aviso del Llavero de macOS para “Chrome Safe Storage”; haz clic en Permitir siempre.";
+"ollama_manual_cookie_missing_status" = "Ninguna cookie pegada";
+"Use Auto" = "Usar Automático";
+"Sign in to Ollama…" = "Iniciar sesión en Ollama…";
 
 " providers" = " proveedores";
 "(System)" = "(Sistema)";

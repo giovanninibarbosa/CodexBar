@@ -34,6 +34,13 @@
 "ollama_safari_cookie_access_hint" = "کوکی‌های Safari برای CodexBar به دسترسی کامل دیسک نیاز دارند (تنظیمات سیستم > حریم خصوصی و امنیت).";
 "ollama_browser_cookie_decryption_denied" = "رمزگشایی کوکی‌های %@ در Keychain رد شد. کارت ارائه‌دهنده را باز کنید و روی تازه‌سازی (⌘R) کلیک کنید تا دوباره دسترسی به Keychain درخواست شود.";
 "ollama_browser_cookie_decryption_disabled" = "رمزگشایی کوکی‌های %@ در CodexBar غیرفعال است؛ دسترسی Keychain را فعال و تازه‌سازی کنید.";
+"ollama_manual_cookie_empty" = "منبع کوکی روی «دستی» تنظیم شده، اما هیچ سرآیند Cookie جای‌گذاری نشده است. یک سرآیند Cookie از https://ollama.com/settings جای‌گذاری کنید یا منبع کوکی را به «خودکار» تغییر دهید تا کوکی‌های مرورگر وارد شوند.";
+"ollama_manual_cookie_unrecognized" = "سرآیند Cookie جای‌گذاری‌شدهٔ Ollama کوکی نشست (wos-session) ندارد. در حالت واردشده، سرآیند Cookie کامل را از https://ollama.com/settings کپی کنید و دوباره جای‌گذاری کنید.";
+"ollama_no_browser_session" = "کوکی نشست Ollama در مرورگرهای شما پیدا نشد. در Chrome از طریق https://ollama.com/signin وارد شوید و سپس روی «تازه‌سازی» (⌘R) کلیک کنید. اگر نشست شما فقط در Safari یا مرورگر دیگری است، منبع کوکی را روی «دستی» بگذارید و یک سرآیند Cookie جای‌گذاری کنید.";
+"ollama_cookie_source_auto_subtitle" = "نشست ollama.com را از Chrome و سپس از مرورگرهای دیگر وارد می‌کند. نخستین واردکردن ممکن است پیام کی‌چین macOS را برای “Chrome Safe Storage” نشان دهد؛ روی «همیشه اجازه بده» کلیک کنید.";
+"ollama_manual_cookie_missing_status" = "کوکی‌ای جای‌گذاری نشده";
+"Use Auto" = "استفاده از خودکار";
+"Sign in to Ollama…" = "ورود به Ollama…";
 
 " providers" = " providers";
 "(System)" = "(سیستم)";

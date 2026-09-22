@@ -55,6 +55,13 @@
 "ollama_safari_cookie_access_hint" = "Safari-cookies kräver full skivåtkomst för CodexBar (Systeminställningar > Integritet och säkerhet).";
 "ollama_browser_cookie_decryption_denied" = "Dekryptering av %@-cookies nekades i Nyckelhanteraren. Öppna leverantörskortet och klicka på Uppdatera (⌘R) för att begära åtkomst till Nyckelhanteraren igen.";
 "ollama_browser_cookie_decryption_disabled" = "Dekryptering av %@-cookies är inaktiverad i CodexBar; aktivera åtkomst till Nyckelhanteraren och uppdatera.";
+"ollama_manual_cookie_empty" = "Cookiekällan är inställd på Manuell, men ingen Cookie-rubrik har klistrats in. Klistra in en Cookie-rubrik från https://ollama.com/settings eller byt cookiekälla till Automatisk för att importera webbläsarens cookies.";
+"ollama_manual_cookie_unrecognized" = "Den inklistrade Ollama-Cookie-rubriken saknar sessionscookie (wos-session). Kopiera hela Cookie-rubriken från https://ollama.com/settings medan du är inloggad och klistra in den igen.";
+"ollama_no_browser_session" = "Ingen Ollama-sessionscookie hittades i dina webbläsare. Logga in på https://ollama.com/signin i Chrome och klicka sedan på Uppdatera (⌘R). Om din session bara finns i Safari eller en annan webbläsare, ställ in cookiekällan på Manuell och klistra in en Cookie-rubrik.";
+"ollama_cookie_source_auto_subtitle" = "Importerar din ollama.com-session från Chrome och därefter från andra webbläsare. Första importen kan visa en nyckelringsfråga i macOS för “Chrome Safe Storage”; klicka på Tillåt alltid.";
+"ollama_manual_cookie_missing_status" = "Ingen cookie inklistrad";
+"Use Auto" = "Använd Automatisk";
+"Sign in to Ollama…" = "Logga in på Ollama…";
 
 " providers" = " leverantörer";
 "(System)" = "(System)";
