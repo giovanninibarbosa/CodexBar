@@ -13,6 +13,15 @@ struct OllamaUIErrorMapper {
         if trimmed == OllamaUsageError.safariCookieAccessDenied.localizedDescription {
             return localize("ollama_safari_cookie_access_hint")
         }
+        if trimmed == OllamaUsageError.manualCookieHeaderEmpty.localizedDescription {
+            return localize("ollama_manual_cookie_empty")
+        }
+        if trimmed == OllamaUsageError.manualCookieHeaderUnrecognized.localizedDescription {
+            return localize("ollama_manual_cookie_unrecognized")
+        }
+        if trimmed == OllamaUsageError.noSessionCookie.localizedDescription {
+            return localize("ollama_no_browser_session")
+        }
         if let browserName = self.browserName(
             in: trimmed,
             suffix: " cookie decryption was declined in Keychain. " +

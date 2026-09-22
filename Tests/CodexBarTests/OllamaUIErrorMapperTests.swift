@@ -40,8 +40,35 @@ struct OllamaUIErrorMapperTests {
     }
 
     @Test
+    func `maps manual cookie header empty to localized hint`() {
+        let message = OllamaUIErrorMapper.userFacingMessage(
+            OllamaUsageError.manualCookieHeaderEmpty.localizedDescription,
+            localize: { key in "localized:\(key)" })
+
+        #expect(message == "localized:ollama_manual_cookie_empty")
+    }
+
+    @Test
+    func `maps manual cookie header unrecognized to localized hint`() {
+        let message = OllamaUIErrorMapper.userFacingMessage(
+            OllamaUsageError.manualCookieHeaderUnrecognized.localizedDescription,
+            localize: { key in "localized:\(key)" })
+
+        #expect(message == "localized:ollama_manual_cookie_unrecognized")
+    }
+
+    @Test
+    func `maps missing browser session to localized hint`() {
+        let message = OllamaUIErrorMapper.userFacingMessage(
+            OllamaUsageError.noSessionCookie.localizedDescription,
+            localize: { key in "localized:\(key)" })
+
+        #expect(message == "localized:ollama_no_browser_session")
+    }
+
+    @Test
     func `preserves generic Ollama errors`() {
-        let raw = OllamaUsageError.noSessionCookie.localizedDescription
+        let raw = OllamaUsageError.networkError("timed out").localizedDescription
         #expect(OllamaUIErrorMapper.userFacingMessage(raw, localize: { $0 }) == raw)
     }
 }
