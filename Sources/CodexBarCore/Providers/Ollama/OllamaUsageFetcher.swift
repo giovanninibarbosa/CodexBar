@@ -739,7 +739,9 @@ public struct OllamaUsageFetcher: Sendable {
             }
             guard hasRecognizedOllamaSessionCookie(in: normalized) else {
                 logger?("[ollama] Manual cookie header missing recognized session cookie")
-                throw OllamaUsageError.manualCookieHeaderUnrecognized
+                throw manualCookieMode
+                    ? OllamaUsageError.manualCookieHeaderUnrecognized
+                    : OllamaUsageError.noSessionCookie
             }
             logger?("[ollama] Using manual cookie header")
             return normalized

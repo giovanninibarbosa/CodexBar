@@ -125,6 +125,20 @@ struct OllamaUsageFetcherTests {
     }
 
     @Test
+    func `auto mode with unrecognized override keeps browser session error`() {
+        do {
+            _ = try OllamaUsageFetcher.resolveManualCookieHeader(
+                override: "analytics_session_id=noise; theme=dark",
+                manualCookieMode: false)
+            Issue.record("Expected OllamaUsageError.noSessionCookie")
+        } catch OllamaUsageError.noSessionCookie {
+            // expected: the manual-only copy must not surface for a cached browser cookie
+        } catch {
+            Issue.record("Expected OllamaUsageError.noSessionCookie, got \(error)")
+        }
+    }
+
+    @Test
     func `manual mode with recognized session cookie accepts header`() throws {
         let resolved = try OllamaUsageFetcher.resolveManualCookieHeader(
             override: "next-auth.session-token.0=abc; theme=dark",
