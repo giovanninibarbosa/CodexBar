@@ -2,6 +2,10 @@
 
 ## 0.64.2 — Unreleased
 
+### Fixed
+
+- Ollama: distinguish an empty Manual cookie field from a missing browser session, show a "No cookie pasted" status with a one-click **Use Auto** switch, explain the Chrome Keychain prompt in the Auto subtitle, and add a **Sign in to Ollama…** menu entry.
+
 ## 0.64.1 — 2026-09-22
 
 ### Highlights

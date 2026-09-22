@@ -27,7 +27,9 @@ included-credit utilization. Older pages with session/hourly and weekly quota wi
 1. Open **Settings → Providers**.
 2. Enable **Ollama**.
 3. For API-key mode, paste an API key from `https://ollama.com/settings/keys` or set `OLLAMA_API_KEY`.
-4. For quota bars, leave **Cookie source** on **Auto** (recommended, imports Chrome cookies by default).
+4. For quota bars, leave **Cookie source** on **Auto** (recommended, imports Chrome cookies first, then other browsers).
+   The first import may show a macOS Keychain prompt for "Chrome Safe Storage". That prompt is expected: CodexBar
+   needs the key to decrypt Chrome's cookie store. Click **Always Allow** so it does not repeat.
 
 Ollama API keys currently do not expire, but they can be revoked from the key settings page.
 
@@ -36,6 +38,10 @@ Ollama API keys currently do not expire, but they can be revoked from the key se
 1. Open `https://ollama.com/settings` in your browser.
 2. Copy a `Cookie:` header from the Network tab.
 3. Paste it into **Ollama → Cookie source → Manual**.
+
+While **Manual** is selected and the field is empty, the Cookie source row shows **No cookie pasted** and a
+**Use Auto** button that switches back to browser import. The menu also offers **Sign in to Ollama…**, which opens
+`https://ollama.com/signin` in your browser; click **Refresh** afterwards.
 
 ## How it works
 
@@ -62,10 +68,23 @@ Ollama API keys currently do not expire, but they can be revoked from the key se
 
 ## Troubleshooting
 
-### “No Ollama session cookie found”
+### “Cookie source is set to Manual, but no cookie header is pasted”
 
-Sign in at `https://ollama.com/signin` in Chrome, then refresh CodexBar.
-If your active session is only in Safari (or another browser), use **Cookie source → Manual** and paste a cookie header.
+**Cookie source** is **Manual** and the field is empty, so CodexBar never looks at your browser. Either paste a
+`Cookie:` header from `https://ollama.com/settings`, or click **Use Auto** on the Cookie source row to import
+browser cookies again. Signing in to ollama.com does not change this state.
+
+### “The pasted Ollama cookie header has no session cookie (wos-session)”
+
+The pasted text was recognized but contains no `wos-session` (or legacy session) cookie. Copy the full `Cookie:`
+header from a request to `https://ollama.com/settings` while signed in; a single analytics or theme cookie is not
+enough.
+
+### “No Ollama session cookie found in your browsers”
+
+**Cookie source** is **Auto** and no supported browser had an Ollama session. Sign in at `https://ollama.com/signin`
+in Chrome, then click **Refresh** (⌘R) on the provider card. If your session is only in Safari or another browser,
+switch **Cookie source** to **Manual** and paste a cookie header.
 
 ### “Ollama session cookie expired”
 
