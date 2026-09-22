@@ -103,6 +103,7 @@ private func ollamaCookiePairs(from header: String) -> [(name: String, value: St
 
 public enum OllamaUsageError: LocalizedError, Sendable {
     private static let signInURL = "https://ollama.com/signin"
+    private static let settingsURL = "https://ollama.com/settings"
 
     case missingAPIKey
     case notLoggedIn
@@ -111,6 +112,8 @@ public enum OllamaUsageError: LocalizedError, Sendable {
     case parseFailed(String)
     case networkError(String)
     case noSessionCookie
+    case manualCookieHeaderEmpty
+    case manualCookieHeaderUnrecognized
     case safariCookieAccessDenied
     case browserCookieDecryptionDenied(String)
     case browserCookieDecryptionDisabled(String)
@@ -130,7 +133,15 @@ public enum OllamaUsageError: LocalizedError, Sendable {
         case let .networkError(message):
             "Ollama request failed: \(message)"
         case .noSessionCookie:
-            "No Ollama session cookie found. Please sign in at \(Self.signInURL) in your browser."
+            "No Ollama session cookie found in your browsers. Sign in at \(Self.signInURL) in Chrome, " +
+                "then click Refresh (⌘R). If your session is only in Safari or another browser, " +
+                "set Cookie source to Manual and paste a cookie header."
+        case .manualCookieHeaderEmpty:
+            "Cookie source is set to Manual, but no cookie header is pasted. Paste a Cookie header from " +
+                "\(Self.settingsURL), or switch Cookie source to Auto to import browser cookies."
+        case .manualCookieHeaderUnrecognized:
+            "The pasted Ollama cookie header has no session cookie (wos-session). Copy the full Cookie header " +
+                "from \(Self.settingsURL) while signed in, then paste it again."
         case .safariCookieAccessDenied:
             "Safari cookies need Full Disk Access for CodexBar (System Settings > Privacy & Security)."
         case let .browserCookieDecryptionDenied(browserName):
@@ -728,13 +739,14 @@ public struct OllamaUsageFetcher: Sendable {
             }
             guard hasRecognizedOllamaSessionCookie(in: normalized) else {
                 logger?("[ollama] Manual cookie header missing recognized session cookie")
-                throw OllamaUsageError.noSessionCookie
+                throw OllamaUsageError.manualCookieHeaderUnrecognized
             }
             logger?("[ollama] Using manual cookie header")
             return normalized
         }
         if manualCookieMode {
-            throw OllamaUsageError.noSessionCookie
+            logger?("[ollama] Manual cookie mode selected but no cookie header is configured")
+            throw OllamaUsageError.manualCookieHeaderEmpty
         }
         return nil
     }

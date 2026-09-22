@@ -15,6 +15,24 @@ struct OllamaUsageFetcherTests {
     }
 
     @Test
+    func `cookie setup errors name the settings fix`() {
+        let empty = OllamaUsageError.manualCookieHeaderEmpty.errorDescription ?? ""
+        #expect(empty.contains("Manual"))
+        #expect(empty.contains("Auto"))
+        #expect(empty.contains("https://ollama.com/settings"))
+
+        let unrecognized = OllamaUsageError.manualCookieHeaderUnrecognized.errorDescription ?? ""
+        #expect(unrecognized.contains("wos-session"))
+        #expect(unrecognized.contains("https://ollama.com/settings"))
+
+        let browser = OllamaUsageError.noSessionCookie.errorDescription ?? ""
+        #expect(browser.contains("https://ollama.com/signin"))
+        #expect(browser.contains("Chrome"))
+        #expect(browser.contains("Manual"))
+        #expect(!browser.contains("Please sign in"))
+    }
+
+    @Test
     func `attaches cookie for ollama hosts`() {
         #expect(OllamaUsageFetcher.shouldAttachCookie(to: URL(string: "https://ollama.com/settings")))
         #expect(OllamaUsageFetcher.shouldAttachCookie(to: URL(string: "https://www.ollama.com")))
@@ -57,16 +75,30 @@ struct OllamaUsageFetcherTests {
     }
 
     @Test
-    func `manual mode without valid header throws no session cookie`() {
+    func `manual mode without header throws manual cookie header empty`() {
         do {
             _ = try OllamaUsageFetcher.resolveManualCookieHeader(
                 override: nil,
                 manualCookieMode: true)
-            Issue.record("Expected OllamaUsageError.noSessionCookie")
-        } catch OllamaUsageError.noSessionCookie {
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderEmpty")
+        } catch OllamaUsageError.manualCookieHeaderEmpty {
             // expected
         } catch {
-            Issue.record("Expected OllamaUsageError.noSessionCookie, got \(error)")
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderEmpty, got \(error)")
+        }
+    }
+
+    @Test(arguments: ["", "   ", "\n\t "])
+    func `manual mode with blank header throws manual cookie header empty`(header: String) {
+        do {
+            _ = try OllamaUsageFetcher.resolveManualCookieHeader(
+                override: header,
+                manualCookieMode: true)
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderEmpty")
+        } catch OllamaUsageError.manualCookieHeaderEmpty {
+            // expected
+        } catch {
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderEmpty, got \(error)")
         }
     }
 
@@ -79,16 +111,16 @@ struct OllamaUsageFetcherTests {
     }
 
     @Test
-    func `manual mode without recognized session cookie throws no session cookie`() {
+    func `manual mode without recognized session cookie throws unrecognized header`() {
         do {
             _ = try OllamaUsageFetcher.resolveManualCookieHeader(
                 override: "analytics_session_id=noise; theme=dark",
                 manualCookieMode: true)
-            Issue.record("Expected OllamaUsageError.noSessionCookie")
-        } catch OllamaUsageError.noSessionCookie {
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderUnrecognized")
+        } catch OllamaUsageError.manualCookieHeaderUnrecognized {
             // expected
         } catch {
-            Issue.record("Expected OllamaUsageError.noSessionCookie, got \(error)")
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderUnrecognized, got \(error)")
         }
     }
 
