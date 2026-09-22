@@ -1,8 +1,12 @@
+import AppKit
 import CodexBarCore
 import Foundation
 
 struct OllamaProviderImplementation: ProviderImplementation {
     let id: UsageProvider = .ollama
+    let supportsLoginFlow: Bool = true
+
+    private static let signInURL = URL(string: "https://ollama.com/signin")!
 
     @MainActor
     func observeSettings(_ settings: SettingsStore) {
@@ -40,6 +44,19 @@ struct OllamaProviderImplementation: ProviderImplementation {
         if settings.ollamaCookieSource != .manual {
             settings.ollamaCookieSource = .manual
         }
+    }
+
+    @MainActor
+    func loginMenuAction(context _: ProviderMenuLoginContext)
+        -> (label: String, action: MenuDescriptor.MenuAction)?
+    {
+        ("Sign in to Ollama…", .loginToProvider(url: Self.signInURL.absoluteString))
+    }
+
+    @MainActor
+    func runLoginFlow(context _: ProviderLoginContext) async -> Bool {
+        NSWorkspace.shared.open(Self.signInURL)
+        return false
     }
 
     @MainActor
