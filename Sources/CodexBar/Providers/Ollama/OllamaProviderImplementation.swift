@@ -43,6 +43,14 @@ struct OllamaProviderImplementation: ProviderImplementation {
     }
 
     @MainActor
+    static func manualCookieMissing(settings: SettingsStore) -> Bool {
+        ProviderCookieSourceUI.manualHeaderMissing(
+            source: settings.ollamaCookieSource,
+            header: settings.ollamaCookieHeader,
+            hasTokenAccounts: !settings.tokenAccounts(for: .ollama).isEmpty)
+    }
+
+    @MainActor
     func settingsPickers(context: ProviderSettingsContext) -> [ProviderSettingsPickerDescriptor] {
         let sourceBinding = context.rawValueBinding(\.ollamaUsageDataSource, fallback: .auto)
         let sourceOptions: [ProviderSettingsPickerOption] = [
@@ -66,12 +74,15 @@ struct OllamaProviderImplementation: ProviderImplementation {
                 allowsOff: false,
                 subtitles: {
                     .init(
-                        auto: L("Automatic imports browser cookies."),
+                        auto: L("ollama_cookie_source_auto_subtitle"),
                         manual: L("Paste a Cookie header or cURL capture from %@.", "Ollama settings"),
                         off: L("%@ cookies are disabled.", "Ollama"))
                 },
                 trailingText: {
                     guard context.settings.ollamaUsageDataSource != .api else { return nil }
+                    if Self.manualCookieMissing(settings: context.settings) {
+                        return L("ollama_manual_cookie_missing_status")
+                    }
                     return ProviderCookieRefreshAction.trailingText(
                         provider: .ollama,
                         cookieSource: context.settings.ollamaCookieSource,
@@ -83,6 +94,18 @@ struct OllamaProviderImplementation: ProviderImplementation {
                         cookieSource: { context.settings.ollamaCookieSource },
                         additionalVisibility: { context.settings.ollamaUsageDataSource != .api },
                         context: context),
+                    ProviderSettingsActionDescriptor(
+                        id: "ollama-use-auto-cookie",
+                        title: "Use Auto",
+                        style: .bordered,
+                        isVisible: {
+                            context.settings.ollamaUsageDataSource != .api
+                                && !context.settings.debugDisableKeychainAccess
+                                && Self.manualCookieMissing(settings: context.settings)
+                        },
+                        perform: { @MainActor in
+                            context.settings.ollamaCookieSource = .auto
+                        }),
                 ]),
         ]
     }

@@ -207,12 +207,86 @@ struct ProviderSettingsDescriptorTests {
 
         fixture.settings.ollamaCookieSource = .manual
         #expect(action.isVisible?() == false)
-        #expect(picker.trailingText?() == nil)
+        #expect(picker.trailingText?() == L("ollama_manual_cookie_missing_status"))
 
         fixture.settings.ollamaCookieSource = .auto
         fixture.settings.ollamaUsageDataSource = .api
         #expect(action.isVisible?() == false)
         #expect(picker.trailingText?() == nil)
+    }
+
+    @Test
+    func `ollama manual cookie source without header offers use auto`() throws {
+        let fixture = try self.makeSettingsFixture(suite: "ProviderSettingsDescriptorTests-ollama-use-auto")
+        let context = fixture.settingsContext(provider: .ollama)
+        let pickers = OllamaProviderImplementation().settingsPickers(context: context)
+        let picker = try #require(pickers.first { $0.id == "ollama-cookie-source" })
+        let useAuto = try #require(picker.trailingActions.first { $0.id == "ollama-use-auto-cookie" })
+
+        #expect(useAuto.title == "Use Auto")
+        #expect(useAuto.style == .bordered)
+        #expect(useAuto.isVisible?() == false)
+
+        fixture.settings.ollamaCookieSource = .manual
+        fixture.settings.ollamaCookieHeader = ""
+        #expect(useAuto.isVisible?() == true)
+        #expect(picker.trailingText?() == L("ollama_manual_cookie_missing_status"))
+
+        fixture.settings.ollamaCookieHeader = "   "
+        #expect(useAuto.isVisible?() == true)
+
+        fixture.settings.ollamaCookieHeader = "wos-session=abc"
+        #expect(useAuto.isVisible?() == false)
+        #expect(picker.trailingText?() == nil)
+    }
+
+    @Test
+    func `ollama use auto hides in api mode and when keychain is disabled`() throws {
+        let fixture = try self.makeSettingsFixture(suite: "ProviderSettingsDescriptorTests-ollama-use-auto-hidden")
+        let context = fixture.settingsContext(provider: .ollama)
+        let pickers = OllamaProviderImplementation().settingsPickers(context: context)
+        let picker = try #require(pickers.first { $0.id == "ollama-cookie-source" })
+        let useAuto = try #require(picker.trailingActions.first { $0.id == "ollama-use-auto-cookie" })
+
+        fixture.settings.ollamaCookieSource = .manual
+        fixture.settings.ollamaCookieHeader = ""
+        #expect(useAuto.isVisible?() == true)
+
+        fixture.settings.ollamaUsageDataSource = .api
+        #expect(useAuto.isVisible?() == false)
+        #expect(picker.trailingText?() == nil)
+
+        fixture.settings.ollamaUsageDataSource = .auto
+        fixture.settings.debugDisableKeychainAccess = true
+        defer { fixture.settings.debugDisableKeychainAccess = false }
+        #expect(useAuto.isVisible?() == false)
+    }
+
+    @Test
+    func `ollama use auto action switches cookie source to auto`() async throws {
+        let fixture = try self.makeSettingsFixture(suite: "ProviderSettingsDescriptorTests-ollama-use-auto-perform")
+        let context = fixture.settingsContext(provider: .ollama)
+        let pickers = OllamaProviderImplementation().settingsPickers(context: context)
+        let picker = try #require(pickers.first { $0.id == "ollama-cookie-source" })
+        let useAuto = try #require(picker.trailingActions.first { $0.id == "ollama-use-auto-cookie" })
+
+        fixture.settings.ollamaCookieSource = .manual
+        fixture.settings.ollamaCookieHeader = ""
+        await useAuto.perform()
+
+        #expect(fixture.settings.ollamaCookieSource == .auto)
+        #expect(useAuto.isVisible?() == false)
+    }
+
+    @Test
+    func `ollama manual cookie missing ignores token accounts`() {
+        let settings = testSettingsStore(suiteName: "ProviderSettingsDescriptorTests-ollama-token-accounts")
+        settings.ollamaCookieSource = .manual
+        settings.ollamaCookieHeader = ""
+        #expect(OllamaProviderImplementation.manualCookieMissing(settings: settings))
+
+        settings.addTokenAccount(provider: .ollama, label: "Work", token: "wos-session=work")
+        #expect(!OllamaProviderImplementation.manualCookieMissing(settings: settings))
     }
 
     @Test
