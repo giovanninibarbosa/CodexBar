@@ -1,4 +1,5 @@
 import CodexBarCore
+import Foundation
 
 enum ProviderCookieSourceUI {
     struct Subtitles {
@@ -46,6 +47,17 @@ enum ProviderCookieSourceUI {
 
     static let keychainDisabledPrefixKey =
         "Keychain access is disabled in Advanced, so browser cookie import is unavailable."
+
+    /// True when the picker is on Manual but nothing supplies a cookie: the pasted header is blank and no
+    /// token account is selected. Drives the "No cookie pasted" status and the "Use Auto" action.
+    static func manualHeaderMissing(
+        source: ProviderCookieSource,
+        header: String?,
+        hasTokenAccounts: Bool) -> Bool
+    {
+        guard source == .manual, !hasTokenAccounts else { return false }
+        return header?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true
+    }
 
     @MainActor
     static func cachedTrailingText(provider: UsageProvider, scope: CookieHeaderCache.Scope? = nil) -> String? {
