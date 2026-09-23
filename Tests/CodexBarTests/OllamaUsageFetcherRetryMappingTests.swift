@@ -1,4 +1,5 @@
 import Foundation
+import os.lock
 import Testing
 @testable import CodexBarCore
 
@@ -901,6 +902,77 @@ struct OllamaUsageFetcherRetryMappingTests {
             sessionResetsAt: nil,
             weeklyResetsAt: nil,
             updatedAt: Date(timeIntervalSince1970: 200))
+    }
+}
+
+extension OllamaUsageFetcherRetryMappingTests {
+    // MARK: - Cookie Header Rejection Before Request
+
+    @Test
+    func `manual mode with empty header fails before any request`() async {
+        defer { OllamaRetryMappingStubURLProtocol.handler = nil }
+        let requests = OSAllocatedUnfairLock(initialState: 0)
+        OllamaRetryMappingStubURLProtocol.handler = { _ in
+            requests.withLock { $0 += 1 }
+            throw URLError(.badServerResponse)
+        }
+
+        let fetcher = self.makeCookieFetcher()
+        do {
+            _ = try await fetcher.fetch(cookieHeaderOverride: "   ", manualCookieMode: true)
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderEmpty")
+        } catch OllamaUsageError.manualCookieHeaderEmpty {
+            // expected
+        } catch {
+            Issue.record("Expected manualCookieHeaderEmpty, got \(error)")
+        }
+        #expect(requests.withLock { $0 } == 0)
+    }
+
+    @Test
+    func `manual mode with unrecognized header fails before any request`() async {
+        defer { OllamaRetryMappingStubURLProtocol.handler = nil }
+        let requests = OSAllocatedUnfairLock(initialState: 0)
+        OllamaRetryMappingStubURLProtocol.handler = { _ in
+            requests.withLock { $0 += 1 }
+            throw URLError(.badServerResponse)
+        }
+
+        let fetcher = self.makeCookieFetcher()
+        do {
+            _ = try await fetcher.fetch(
+                cookieHeaderOverride: "analytics_session_id=noise; theme=dark",
+                manualCookieMode: true)
+            Issue.record("Expected OllamaUsageError.manualCookieHeaderUnrecognized")
+        } catch OllamaUsageError.manualCookieHeaderUnrecognized {
+            // expected
+        } catch {
+            Issue.record("Expected manualCookieHeaderUnrecognized, got \(error)")
+        }
+        #expect(requests.withLock { $0 } == 0)
+    }
+
+    @Test
+    func `automatic cached header without session cookie keeps browser session error`() async {
+        defer { OllamaRetryMappingStubURLProtocol.handler = nil }
+        let requests = OSAllocatedUnfairLock(initialState: 0)
+        OllamaRetryMappingStubURLProtocol.handler = { _ in
+            requests.withLock { $0 += 1 }
+            throw URLError(.badServerResponse)
+        }
+
+        let fetcher = self.makeCookieFetcher()
+        do {
+            _ = try await fetcher.fetchResolvedCookie(
+                cookieHeaderOverride: "analytics_session_id=noise; theme=dark",
+                cookieHeaderOverrideSourceLabel: "cached Chrome")
+            Issue.record("Expected OllamaUsageError.noSessionCookie")
+        } catch OllamaUsageError.noSessionCookie {
+            // expected: the Manual-only copy must never surface for a cached browser cookie
+        } catch {
+            Issue.record("Expected noSessionCookie, got \(error)")
+        }
+        #expect(requests.withLock { $0 } == 0)
     }
 }
 
